@@ -1,0 +1,223 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>泷羽（powershell） | DUDUの博客</title><meta name="author" content="DUDU"><meta name="copyright" content="DUDU"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="来记录一下">
+<meta property="og:type" content="article">
+<meta property="og:title" content="泷羽（powershell）">
+<meta property="og:url" content="http://example.com/2025/01/15/powershell/index.html">
+<meta property="og:site_name" content="DUDUの博客">
+<meta property="og:description" content="来记录一下">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/gallery/DM1/3ib0oselavv.jpg">
+<meta property="article:published_time" content="2025-01-15T15:45:14.000Z">
+<meta property="article:modified_time" content="2025-01-16T05:34:56.722Z">
+<meta property="article:author" content="DUDU">
+<meta property="article:tag" content="博客记录">
+<meta property="article:tag" content="随笔">
+<meta property="article:tag" content="泷羽SEC">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/gallery/DM1/3ib0oselavv.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "泷羽（powershell）",
+  "url": "http://example.com/2025/01/15/powershell/",
+  "image": "http://example.com/gallery/DM1/3ib0oselavv.jpg",
+  "datePublished": "2025-01-15T15:45:14.000Z",
+  "dateModified": "2025-01-16T05:34:56.722Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "DUDU",
+      "url": "http://example.com/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2025/01/15/powershell/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"Author: DUDU","link":"Link: ","source":"Source: DUDUの博客","info":"Copyright belongs to the author. For commercial use, please contact the author for authorization. For non-commercial use, please indicate the source."}},
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '泷羽（powershell）',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/gallery/DM1/pikaa.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">12</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">1</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div><div class="menus_item"><a class="site-page" href="/images/"><i class="fa-fw fas fa-image"></i><span> Images</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/gallery/DM1/3ib0oselavv.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/gallery/DM1/pikaa.png" alt="Logo"><span class="site-name">DUDUの博客</span></a><a class="nav-page-title" href="/"><span class="site-name">泷羽（powershell）</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div><div class="menus_item"><a class="site-page" href="/images/"><i class="fa-fw fas fa-image"></i><span> Images</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">泷羽（powershell）</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2025-01-15T15:45:14.000Z" title="Created 2025-01-15 23:45:14">2025-01-15</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2025-01-16T05:34:56.722Z" title="Updated 2025-01-16 13:34:56">2025-01-16</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%B3%B7%E7%BE%BDSEC/">泷羽SEC</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>power shell</p>
+<p>win+ r使用powershell<br>win+ r 使用cmd 在cmd内执行powershell</p>
+<p>powershell能作cmd能做的，能做cmd不能做的</p>
+<p>不同的系统powershell的版本会不一样</p>
+<p>powershell为什么强大</p>
+<p><img src="/../typora-user-images/WindowsTerminal_nxrjOdZoqM.png"></p>
+<p>直接计算（非常方便）</p>
+<p>命名多采用动词加名词的形式（非常方便）</p>
+<p><img src="/../typora-user-images/WindowsTerminal_cjuWXhrYj0.png"></p>
+<p>set-service</p>
+<p>而在cmd中，只能使用以下命令打开图形化的界面</p>
+<p>services.msc</p>
+<p><img src="/../typora-user-images/mmc_n6xnkYubka.png"></p>
+<p>一般的编程语言不支持面向对象,像是c,python<br>更关心程序的执行顺序</p>
+<p>像是c++，java这样的语言是支持面向对象的</p>
+<p>汇编语言面向机器，和硬件的关联非常紧密</p>
+<p>powershell 绑定了微软的.net微软平台，兼容性好，提供了大量的库，powershell也是面向对象的</p>
+<p>powershell控制台</p>
+<p>修改属性</p>
+<p>编辑模式<br>快速模式（使用鼠标）选中后反键粘贴</p>
+<p>powershell快捷键</p>
+<p>与linux是很相似的</p>
+<p>alt+F7 清除历史记录</p>
+<p>PgUp PgOn翻页</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br></pre></td><td class="code"><pre><span class="line">## 导航命令</span><br><span class="line">- `cd [目录]`：更改当前工作目录。</span><br><span class="line">  - 示例：`cd /home/user` - 切换到用户主目录。</span><br><span class="line">- `pwd`：显示当前工作目录的路径。</span><br><span class="line">  - 示例：`pwd` - 输出当前目录的绝对路径。</span><br><span class="line">- `ls [选项] [目录]`：列出目录内容。</span><br><span class="line">  - 常用选项：</span><br><span class="line">    - `-l`：详细信息</span><br><span class="line">    - `-a`：显示隐藏文件</span><br><span class="line">    - `-h`：人性化显示文件大小</span><br><span class="line">  - 示例：`ls -la` - 列出所有文件，包括隐藏文件，并显示详细信息。</span><br><span class="line"></span><br><span class="line">## 文件和目录操作</span><br><span class="line">- `mkdir [目录]`：创建新目录。</span><br><span class="line">  - 示例：`mkdir newdir` - 在当前目录下创建一个名为newdir的目录。</span><br><span class="line">- `rm [选项] [文件或目录]`：删除文件或目录。</span><br><span class="line">  - 常用选项：</span><br><span class="line">    - `-r`：递归删除目录及其内容</span><br><span class="line">    - `-f`：强制删除，不提示确认</span><br><span class="line">  - 示例：`rm -rf tempdir` - 递归强制删除tempdir目录及其所有内容。</span><br><span class="line">- `cp [源文件] [目标文件或目录]`：复制文件或目录。</span><br><span class="line">  - 示例：`cp file.txt /backup` - 将file.txt复制到/backup目录。</span><br><span class="line">- `mv [源文件] [目标文件或目录]`：移动文件或目录，也可用于重命名。</span><br><span class="line">  - 示例：`mv oldname.txt newname.txt` - 将oldname.txt重命名为newname.txt。</span><br><span class="line"></span><br><span class="line">## 文件查看和编辑</span><br><span class="line">- `cat [文件]`：显示文件内容。</span><br><span class="line">  - 示例：`cat readme.txt` - 显示readme.txt文件的内容。</span><br><span class="line">- `less [文件]`：分页显示文件内容。</span><br><span class="line">  - 示例：`less largefile.txt` - 逐页显示largefile.txt的内容。</span><br><span class="line">- `nano [文件]`：简单易用的文本编辑器。</span><br><span class="line">  - 示例：`nano config.txt` - 打开config.txt文件进行编辑。</span><br><span class="line">- `vim [文件]`：功能强大的文本编辑器。</span><br><span class="line">  - 示例：`vim script.sh` - 打开或创建script.sh文件进行编辑。</span><br><span class="line"></span><br><span class="line">## 系统信息和管理</span><br><span class="line">- `uname [选项]`：显示系统信息。</span><br><span class="line">  - 常用选项：</span><br><span class="line">    - `-a`：显示全部系统信息</span><br><span class="line">  - 示例：`uname -a` - 显示全部系统信息。</span><br><span class="line">- `top`：显示系统进程和资源使用情况。</span><br><span class="line">  - 示例：`top` - 实时显示系统负载和进程信息。</span><br><span class="line">- `df [选项]`：显示磁盘空间使用情况。</span><br><span class="line">  - 常用选项：</span><br><span class="line">    - `-h`：人性化显示大小</span><br><span class="line">  - 示例：`df -h` - 显示磁盘空间使用情况，以GB、MB等单位显示。</span><br><span class="line">- `free [选项]`：显示内存使用情况。</span><br><span class="line">  - 常用选项：</span><br><span class="line">    - `-h`：人性化显示大小</span><br><span class="line">  - 示例：`free -h` - 显示内存和交换空间的使用情况。</span><br><span class="line"></span><br><span class="line">## 权限管理</span><br><span class="line">- `chmod [模式] [文件或目录]`：更改文件或目录的权限。</span><br><span class="line">  - 示例：`chmod +x script.sh` - 为script.sh添加执行权限。</span><br><span class="line">- `chown [用户:组] [文件或目录]`：更改文件或目录的所有者。</span><br><span class="line">  - 示例：`chown user:group file.txt` - 将file.txt的所有者更改为user，组更改为group。</span><br><span class="line">- `sudo [命令]`：以超级用户权限执行命令。</span><br><span class="line">  - 示例：`sudo apt update` - 使用sudo权限更新软件包列表。</span><br><span class="line"></span><br><span class="line">## 软件包管理</span><br><span class="line">- `apt [选项] [命令]`：在Debian/Ubuntu系统上管理软件包。</span><br><span class="line">  - 常用命令：</span><br><span class="line">    - `apt update`：更新软件包列表</span><br><span class="line">    - `apt upgrade`：升级已安装的软件包</span><br><span class="line">    - `apt install [软件包]`：安装软件包</span><br><span class="line">    - `apt remove [软件包]`：卸载软件包</span><br><span class="line">  - 示例：`sudo apt install vim` - 安装vim编辑器。</span><br><span class="line">- `yum [选项] [命令]`：在CentOS/RHEL系统上管理软件包。</span><br><span class="line">  - 常用命令：</span><br><span class="line">    - `yum update`：更新软件包</span><br><span class="line">    - `yum install [软件包]`：安装软件包</span><br><span class="line">    - `yum remove [软件包]`：卸载软件包</span><br><span class="line">  - 示例：`sudo yum install nano` - 安装nano编辑器。</span><br><span class="line"></span><br><span class="line">## 网络管理</span><br><span class="line">- `ping [主机]`：测试网络连接。</span><br><span class="line">  - 示例：`ping google.com` - 测试与google.com的连通性。</span><br><span class="line">- `ifconfig [选项]`：配置和显示网络接口信息。</span><br><span class="line">  - 示例：`ifconfig` - 显示所有网络接口的配置信息。</span><br><span class="line">- `netstat [选项]`：显示网络连接、路由表、接口统计等。</span><br><span class="line">  - 示例：`netstat -tuln` - 显示所有监听的TCP和UDP端口。</span><br><span class="line">- `ssh [用户]@[远程主机]`：远程登录到另一台计算机。</span><br><span class="line">  - 示例：`ssh user@remote_host` - 通过SSH连接到远程主机。</span><br><span class="line">- `scp [源文件] [用户]@[远程主机]:[目标路径]`：在本地和远程主机之间安全地复制文件。</span><br><span class="line">  - 示例：`scp localfile.txt user@remote_host:/remote/directory` - 将本地文件复制到远程主机。</span><br><span class="line"></span><br><span class="line">## 进程管理</span><br><span class="line">- `ps [选项]`：报告当前进程的状态。</span><br><span class="line">  - 常用选项：</span><br><span class="line">    - `aux`：显示所有进程</span><br><span class="line">    - `ef`：显示进程树</span><br><span class="line">  - 示例：`ps aux | grep python` - 显示所有包含&quot;python&quot;的进程。</span><br><span class="line">- `kill [选项] [进程ID]`：向进程发送信号，通常用于终止进程。</span><br><span class="line">  - 示例：`kill -9 pid` - 强制终止pid对应的进程。</span><br><span class="line">- `nohup [命令] &amp;`：允许命令在后台运行，忽略挂起信号。</span><br><span class="line">  - 示例：`nohup longrunningcommand &amp;` - 在后台运行longrunningcommand，即使终端关闭也能继续运行。</span><br><span class="line"></span><br><span class="line">## 压缩和归档</span><br><span class="line">- `tar [选项] [归档文件] [文件或目录]`：创建或提取tar归档文件。</span><br><span class="line">  - 常用选项：</span><br><span class="line">    - `cvf`：创建归档</span><br><span class="line">    - `xvf`：提取归档</span><br><span class="line">  - 示例：`tar cvf backup.tar /home/user` - 将/home/user目录打包成backup.tar。</span><br><span class="line">- `gzip [文件]`：压缩文件。</span><br><span class="line">  - 示例：`gzip backup.tar` - 将backup.tar压缩为backup.tar.gz。</span><br><span class="line">- `unzip [归档文件]`：解压.zip文件。</span><br><span class="line">  - 示例：`unzip archive.zip` - 解压archive.zip到当前目录。</span><br><span class="line"></span><br><span class="line">## 搜索和查找</span><br><span class="line">- `find [路径] [选项] [条件]`：在文件系统中搜索文件。</span><br><span class="line">  - 示例：`find /home -name &quot;file.txt&quot;` - 在/home目录及其子目录中搜索名为file.txt的文件。</span><br><span class="line">- `grep [选项] [模式] [文件]`：在文件中搜索匹配的文本。</span><br><span class="line">  - 示例：`grep &quot;error&quot; logfile.txt` - 在logfile.txt中搜索包含&quot;error&quot;的行。</span><br><span class="line">- `whereis [文件]`：查找可执行文件、源代码和手动页面的位置。</span><br><span class="line">  - 示例：`whereis python` - 查找python可执行文件的位置。</span><br><span class="line"></span><br><span class="line">## 用户和组管理</span><br><span class="line">- `useradd [选项] [新用户]`：创建新用户。</span><br><span class="line">  - 示例：`sudo useradd newuser` - 创建一个名为newuser的新用户。</span><br><span class="line">- `passwd [用户]`：更改用户密码。</span><br><span class="line">  - 示例：`sudo passwd newuser` - 设置newuser的密码。</span><br><span class="line">- `groups [用户]`：显示用户所属的组。</span><br><span class="line">  - 示例：`groups newuser` - 显示newuser所属的组。</span><br><span class="line"></span><br><span class="line">## 其他实用命令</span><br><span class="line">- `echo [文本]`：显示文本或变量的值。</span><br><span class="line">  - 示例：`echo &quot;Hello, World!&quot;` - 输出字符串&quot;Hello, World!&quot;。</span><br><span class="line">- `history`：显示命令历史记录。</span><br><span class="line">  - 示例：`history` - 显示之前执行的命令列表。</span><br><span class="line">- `clear`：清空终端屏幕。</span><br><span class="line">  - 示例：`clear` - 清除终端中的所有输出。</span><br><span class="line">- `man [命令]`：显示命令的手册页。</span><br><span class="line">  - 示例：`man ls` - 显示ls命令的详细手册。</span><br><span class="line">- `exit`：退出当前Shell会话。</span><br><span class="line">  - 示例：`exit` - 关闭终端窗口或退出Shell。</span><br><span class="line"></span><br><span class="line">F1 - 帮助</span><br><span class="line"></span><br><span class="line">用途：打开终端帮助文档（如果终端仿真器支持）。</span><br><span class="line">F2 - 自动补充历史命令</span><br><span class="line"></span><br><span class="line">用途：在某些终端中，F2 可以自动补全历史命令。</span><br><span class="line">示例：输入部分命令后按 F2，终端会自动补全最近的历史命令。</span><br><span class="line">F3 - 重复上一条命令</span><br><span class="line"></span><br><span class="line">用途：在某些终端中，F3 可以直接重复上一条命令。</span><br><span class="line">F4 - 删除命令至光标右侧</span><br><span class="line"></span><br><span class="line">用途：从光标位置删除到命令行的末尾。</span><br><span class="line">示例：类似于 Ctrl + K，按 F4 可以快速删除光标右侧的内容。</span><br><span class="line">F5 - 回滚历史命令</span><br><span class="line"></span><br><span class="line">用途：在某些终端中，F5 可以按顺序回滚历史命令。</span><br><span class="line">示例：按 F5 可以逐步查看之前的命令。</span><br><span class="line">F6 - 复制粘贴</span><br><span class="line"></span><br><span class="line">用途：在某些终端中，F6 可以用于复制粘贴文本。</span><br><span class="line">F7 - 查看命令历史记录</span><br><span class="line"></span><br><span class="line">用途：在 bash 中，F7 可以打开命令历史记录窗口。</span><br><span class="line">示例：按 F7 后可以在窗口中浏览和选择历史命令。</span><br><span class="line">F8 - 搜索历史命令</span><br><span class="line"></span><br><span class="line">用途：在某些终端中，F8 可以用于搜索历史命令。</span><br><span class="line">示例：输入部分命令后按 F8，终端会显示匹配的历史命令。</span><br><span class="line">F9 - 执行历史命令</span><br><span class="line"></span><br><span class="line">用途：在某些终端中，F9 可以用于执行指定的历史命令。</span><br><span class="line">示例：按 F9 后可以选择并执行历史命令。</span><br></pre></td></tr></table></figure>
+
+<p>ctrl + C 终止退出</p>
+<p>管道与重定向</p>
+<p>上一套命令的输出作为下一套命令的输入</p>
+<p>powershell 是跨平台的</p>
+<p>在其中可以使用ls等linux下的命令</p>
+<p>ls | format-table Mode,name &gt; 1.txt</p>
+<p>type cat 有很多命令在powershell中是共同的</p>
+<p>一个&gt; 是覆盖两个&gt; 是追加</p>
+<p>可以代替计算器</p>
+<p>powershell2</p>
+<p>powershell执行一些外部的命令<br>netstat -ano<br>ipconfig<br>notepad<br>route print<br>start notepad<br>powershell中录入了windows中所有的命令<br>我们再执行powershell命令的同时，他就会到windows的环境变量中去找<br>通过&amp;跟上完整的路径去执行<br>get-command</p>
+<p>get-help<br>get-command<br>get-process<br>get-alias<br>get-history<br>get-date<br>powershell别名</p>
+<p>gcm<br>通过全名查别名<br>通过别名查全名</p>
+<p><img src="/../typora-user-images/WindowsTerminal_Uv0a7Kbn8N.png"></p>
+<p><img src="/../typora-user-images/WindowsTerminal_kdTW4XhRWT.png"></p>
+<p>定义临时的别名</p>
+<p>set-alias -name pad -value notepad</p>
+<p>del alias:pad</p>
+<p><img src="/../typora-user-images/WindowsTerminal_qQMUKDUbA0.png"></p>
+<p>可正常打开记事本，仅在此窗口中生效。</p>
+<p>export-alias demo.ps1</p>
+<p>导入命令执行信息（导出别名信息）</p>
+<p>dir</p>
+<p>type demo.ps1</p>
+<p>强制导出信息</p>
+<p>powershell3</p>
+<p>定义变量$，大小写不敏感</p>
+<p>看环境变量，执行命令等操作</p>
+<p><img src="/../typora-user-images/WindowsTerminal_kdg0ldiFCa.png"></p>
+<p><img src="/../typora-user-images/WindowsTerminal_gvSpyzrT2R.png"></p>
+<p><img src="/../typora-user-images/WindowsTerminal_scmGkxkREV.png"></p>
+<p><img src="/../typora-user-images/WindowsTerminal_EEi4nePi1K.png"></p>
+<p><img src="/../typora-user-images/WindowsTerminal_EYEt6msI54.png"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="http://example.com">DUDU</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="http://example.com/2025/01/15/powershell/">http://example.com/2025/01/15/powershell/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%8D%9A%E5%AE%A2%E8%AE%B0%E5%BD%95/">博客记录</a><a class="post-meta__tags" href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a><a class="post-meta__tags" href="/tags/%E6%B3%B7%E7%BE%BDSEC/">泷羽SEC</a></div><div class="post-share"><div class="social-share" data-image="/gallery/DM1/3ib0oselavv.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/01/15/linux%E7%B2%BE%E8%AE%B2/" title="泷羽（linux精讲）"><img class="cover" src="/gallery/DM1/vn1tyowwmiq.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">Previous</div><div class="info-item-2">泷羽（linux精讲）</div></div><div class="info-2"><div class="info-item-1">来记录一下</div></div></div></a><a class="pagination-related" href="/2025/01/15/shodan/" title="泷羽（shodan）"><img class="cover" src="/gallery/DM1/l2xkyrl4sgh.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">Next</div><div class="info-item-2">泷羽（shodan）</div></div><div class="info-2"><div class="info-item-1">来记录一下</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2025/01/15/burpsuite/" title="泷羽（burpsuite）"><img class="cover" src="/gallery/DM1/4hdzo0g1l1z.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-01-15</div><div class="info-item-2">泷羽（burpsuite）</div></div><div class="info-2"><div class="info-item-1">来记录一下</div></div></div></a><a class="pagination-related" href="/2025/01/15/linux%E5%9F%BA%E7%A1%80/" title="泷羽（linux基础）"><img class="cover" src="/gallery/DM1/dymo5mrsrsr.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-01-15</div><div class="info-item-2">泷羽（linux基础）</div></div><div class="info-2"><div class="info-item-1">来记录一下</div></div></div></a><a class="pagination-related" href="/2025/01/15/linux%E7%B2%BE%E8%AE%B2/" title="泷羽（linux精讲）"><img class="cover" src="/gallery/DM1/vn1tyowwmiq.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-01-15</div><div class="info-item-2">泷羽（linux精讲）</div></div><div class="info-2"><div class="info-item-1">来记录一下</div></div></div></a><a class="pagination-related" href="/2025/01/15/shodan/" title="泷羽（shodan）"><img class="cover" src="/gallery/DM1/l2xkyrl4sgh.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-01-15</div><div class="info-item-2">泷羽（shodan）</div></div><div class="info-2"><div class="info-item-1">来记录一下</div></div></div></a><a class="pagination-related" href="/2025/01/15/Windows/" title="泷羽（Windows基础）"><img class="cover" src="/gallery/DM1/5uogh2ft5zt.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-01-15</div><div class="info-item-2">泷羽（Windows基础）</div></div><div class="info-2"><div class="info-item-1">来记录一下</div></div></div></a><a class="pagination-related" href="/2025/01/15/wireshark/" title="泷羽（wireshark）"><img class="cover" src="/gallery/DM1/owyaj25wtvz.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-01-15</div><div class="info-item-2">泷羽（wireshark）</div></div><div class="info-2"><div class="info-item-1">来记录一下</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/gallery/DM1/pikaa.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">DUDU</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">12</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">1</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/xxxxx" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:xxxxxx@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/01/15/burpsuite/" title="泷羽（burpsuite）"><img src="/gallery/DM1/4hdzo0g1l1z.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="泷羽（burpsuite）"/></a><div class="content"><a class="title" href="/2025/01/15/burpsuite/" title="泷羽（burpsuite）">泷羽（burpsuite）</a><time datetime="2025-01-15T15:45:14.000Z" title="Created 2025-01-15 23:45:14">2025-01-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/01/15/linux%E5%9F%BA%E7%A1%80/" title="泷羽（linux基础）"><img src="/gallery/DM1/dymo5mrsrsr.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="泷羽（linux基础）"/></a><div class="content"><a class="title" href="/2025/01/15/linux%E5%9F%BA%E7%A1%80/" title="泷羽（linux基础）">泷羽（linux基础）</a><time datetime="2025-01-15T15:45:14.000Z" title="Created 2025-01-15 23:45:14">2025-01-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/01/15/linux%E7%B2%BE%E8%AE%B2/" title="泷羽（linux精讲）"><img src="/gallery/DM1/vn1tyowwmiq.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="泷羽（linux精讲）"/></a><div class="content"><a class="title" href="/2025/01/15/linux%E7%B2%BE%E8%AE%B2/" title="泷羽（linux精讲）">泷羽（linux精讲）</a><time datetime="2025-01-15T15:45:14.000Z" title="Created 2025-01-15 23:45:14">2025-01-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/01/15/powershell/" title="泷羽（powershell）"><img src="/gallery/DM1/3ib0oselavv.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="泷羽（powershell）"/></a><div class="content"><a class="title" href="/2025/01/15/powershell/" title="泷羽（powershell）">泷羽（powershell）</a><time datetime="2025-01-15T15:45:14.000Z" title="Created 2025-01-15 23:45:14">2025-01-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/01/15/shodan/" title="泷羽（shodan）"><img src="/gallery/DM1/l2xkyrl4sgh.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="泷羽（shodan）"/></a><div class="content"><a class="title" href="/2025/01/15/shodan/" title="泷羽（shodan）">泷羽（shodan）</a><time datetime="2025-01-15T15:45:14.000Z" title="Created 2025-01-15 23:45:14">2025-01-15</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2024 - 2025 By DUDU</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">I wish you to become your own sun, no need to rely on who's light.</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
