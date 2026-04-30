@@ -1,0 +1,168 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>java反序列化 | DUDUの博客</title><meta name="author" content="DUDU"><meta name="copyright" content="DUDU"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="JAVA反序列化">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java反序列化">
+<meta property="og:url" content="https://rpsjn.github.io/2026/04/30/java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/index.html">
+<meta property="og:site_name" content="DUDUの博客">
+<meta property="og:description" content="JAVA反序列化">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://rpsjn.github.io/gallery/DM1/1737380757551.jpg">
+<meta property="article:published_time" content="2026-04-30T05:41:54.000Z">
+<meta property="article:modified_time" content="2026-04-30T05:47:19.200Z">
+<meta property="article:author" content="DUDU">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://rpsjn.github.io/gallery/DM1/1737380757551.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "java反序列化",
+  "url": "https://rpsjn.github.io/2026/04/30/java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/",
+  "image": "https://rpsjn.github.io/gallery/DM1/1737380757551.jpg",
+  "datePublished": "2026-04-30T05:41:54.000Z",
+  "dateModified": "2026-04-30T05:47:19.200Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "DUDU",
+      "url": "https://rpsjn.github.io/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://rpsjn.github.io/2026/04/30/java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: DUDU","link":"链接: ","source":"来源: DUDUの博客","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'java反序列化',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/gallery/DM1/pikaa.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">8</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div><div class="menus_item"><a class="site-page" href="/images/"><i class="fa-fw fas fa-image"></i><span> Images</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/gallery/DM1/1737380757551.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">DUDUの博客</span></a><a class="nav-page-title" href="/"><span class="site-name">java反序列化</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div><div class="menus_item"><a class="site-page" href="/images/"><i class="fa-fw fas fa-image"></i><span> Images</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">java反序列化</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon fas fa-history"></i><span class="post-meta-label">更新于</span><time datetime="2026-04-30T05:47:19.200Z" title="更新于 2026-04-30 13:47:19">2026-04-30</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E9%9A%8F%E7%AC%94/">随笔</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>反序列化原理<br>CC6<br>使用ChainedTransformer作为载体<br>使用constantTransformer作为初始化时的链子<br>创建hashmap<br>使用lazymap修饰<br>使用tiedmapentry绑定lazymap的一个键<br>创建hashset(其内部是一个hashmap的残缺实现)<br>写入一个这个键<br>反射获取hashset的map字段。指向其内部的hashmap<br>反射获取hashmpa的table数组，其存储node节点<br>反射获取node节点的key，其为数组的键，修改为foo<br>将此键设置为entry<br>反射赋值不触发内部逻辑，然后序列化即可得到带有tiedmapentry指向内容的序列化链</p>
+<p>CC5<br>将hashset修改为badattributevalueexpexception类<br>将该类的val字段通过反射设置为entry<br>返回该链子的序列化数据即可</p>
+<p>CC4<br>使用tamplatesImpl作为载荷<br>修改templatestmpl的_bytecode字段为目的类的字节码<br>将name设置为非空<br>将factory类设置为默认工厂类<br>返回此类对象templates<br>此链子主要使用TrAXfilter，本用来实现xml格式的转换，在转换时创建目标类的实例，被用来作为tamplates的实例类<br>先创建一个constanttransformer(string.class)<br>再创建一个instantiatetransformer(string.class,args)<br>将这两个transformer组合为chainedtransformer作为优先级队列的比较器传入<br>为优先级队列创建两个相同的值，此时触发链子<br>通过反射修改constant实例的icontant字段，为TrAXfilter类<br>若instantiate的两个参数是作为对象传入，修改原始对象的值即可<br>参数类型为tamplates(TrAXfilter的接收参数类型)，参数templates，之前的载荷类<br>返回序列化的优先级队列即可，此时优先级队列含有chainedtransformer作为比较器，此时的transformer将触发<br>TrAXfilter的类型转换，造成templates的实例化</p>
+<p>CC3<br>此处的载荷依旧为templates和TrAXfilter入口(这意味着使用instantiatetransformer去调用构造函数)不是优先级队列quene<br>而是hashmap-&gt;lazymap-&gt;tiedmapentry-&gt;InvocationHandler(AnnotationInvocationHandler,此类接受map类型的构造参数,且会调用mao的get或者set参数，触发链子)<br>依旧是最后的修改chainedtransformer的itranformer字段为构造好的链子</p>
+<p>CC2<br>单独使用一个invoketransformer，先无害化写入比较器<br>写入优先级队列两个数值<br>反射修改优先级队列的第一个参数为templates，第二个参数为1(比较器触发需要两个参数，在比较时对链子进行运算求值)<br>最后反射修改比较器invoketransformer的imethodname为newtranformer<br>invoketranformer的功能是调用指定对象的方法</p>
+<p>CC1<br>标准的构造tranformer链子<br>写入hashmap-&gt;lazymap-&gt;invocationhandler<br>这里的lazymap要装一层代理，利用代理的invoke()，触发map的get函数<br>这里的invocationhandler要代理上面的代理map，因为entryset()不经过get获取map的内容，但是被代理后的map会触发invoke函数，尝试对lazymap调用entryset，但是失败，就调用get(entryset)，尝试作为key获取，触发链子</p>
+<p>总结：<br>templatesimpl作为模板类，被实例化触发<br>transformer类作为动态处理流程类能很好的构造链子和接入触发点<br>通过优先级队列触发比较函数<br>通过hashmap等的get函数触发<br>通过annotationinvocationhandler和proxy类触发</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://rpsjn.github.io">DUDU</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://rpsjn.github.io/2026/04/30/java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/">https://rpsjn.github.io/2026/04/30/java反序列化/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://rpsjn.github.io" target="_blank">DUDUの博客</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/gallery/DM1/1737380757551.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2025/11/30/%E4%BB%8E%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98%E5%88%B0%E9%80%86%E5%90%91%E8%B0%83%E8%AF%95/" title="从漏洞挖掘到逆向调试"><img class="cover" src="/gallery/DM1/1737429691478.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">从漏洞挖掘到逆向调试</div></div><div class="info-2"><div class="info-item-1">某加速器漏洞</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/gallery/DM1/pikaa.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">DUDU</div><div class="author-info-description">in&out is key</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">8</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/RPSJN"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/xxxxx" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:dudu88485n@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">梦开始的地方</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/04/30/java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" title="java反序列化"><img src="/gallery/DM1/1737380757551.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="java反序列化"/></a><div class="content"><a class="title" href="/2026/04/30/java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" title="java反序列化">java反序列化</a><time datetime="2026-04-30T05:41:54.000Z" title="发表于 2026-04-30 13:41:54">2026-04-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/11/30/%E4%BB%8E%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98%E5%88%B0%E9%80%86%E5%90%91%E8%B0%83%E8%AF%95/" title="从漏洞挖掘到逆向调试"><img src="/gallery/DM1/1737429691478.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="从漏洞挖掘到逆向调试"/></a><div class="content"><a class="title" href="/2025/11/30/%E4%BB%8E%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98%E5%88%B0%E9%80%86%E5%90%91%E8%B0%83%E8%AF%95/" title="从漏洞挖掘到逆向调试">从漏洞挖掘到逆向调试</a><time datetime="2025-11-30T13:37:09.000Z" title="发表于 2025-11-30 21:37:09">2025-11-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/11/25/hello-world/" title="Hello World"><img src="/gallery/DM1/80f5b9302a257.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hello World"/></a><div class="content"><a class="title" href="/2025/11/25/hello-world/" title="Hello World">Hello World</a><time datetime="2025-11-25T10:19:31.862Z" title="发表于 2025-11-25 18:19:31">2025-11-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/11/06/%E6%8A%93%E5%8C%85%E5%8E%9F%E7%90%86/" title="抓包原理"><img src="/gallery/DM1/1737427779742.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="抓包原理"/></a><div class="content"><a class="title" href="/2025/11/06/%E6%8A%93%E5%8C%85%E5%8E%9F%E7%90%86/" title="抓包原理">抓包原理</a><time datetime="2025-11-06T01:45:07.000Z" title="发表于 2025-11-06 09:45:07">2025-11-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/11/05/%E5%8A%A0%E8%BD%BD%E5%8E%9F%E7%90%86/" title="加载原理"><img src="/gallery/DM1/1737381264984.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="加载原理"/></a><div class="content"><a class="title" href="/2025/11/05/%E5%8A%A0%E8%BD%BD%E5%8E%9F%E7%90%86/" title="加载原理">加载原理</a><time datetime="2025-11-05T03:00:50.000Z" title="发表于 2025-11-05 11:00:50">2025-11-05</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2024 - 2026 By DUDU</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">I wish you to become your own sun, no need to rely on who's light.</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
